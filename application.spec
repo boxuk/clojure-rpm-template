@@ -10,10 +10,9 @@ Source:        %{name}-%{version}.tar.gz
 Source1:	   chkconfig.conf
 AutoReqProv:   no
 
-BuildRequires: java-1.6.0-openjdk-devel
+BuildRequires: java-1.6.0-openjdk-devel, boxuk-leiningen
 
 %define _prefix /path/to/install
-%define _lein lein
 
 %description
 A description of the application
@@ -22,10 +21,8 @@ A description of the application
 %setup
 
 %build
-curl -o %{_lein} https://raw.github.com/technomancy/leiningen/stable/bin/lein
-chmod 755 %{_lein}
-PATH=$PATH:.
-%{_lein} bin
+lein -v
+lein bin
 
 %install
 rm -rf $RPM_BUILD_ROOT
